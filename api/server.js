@@ -1,6 +1,7 @@
 // 1. imports
 const express = require('express');
 const server = express();
+require('dotenv').config();
 
 // 2. global middlewares
 
