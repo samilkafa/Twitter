@@ -4,6 +4,7 @@ const express = require("express");
 const helmet = require("helmet")
 const cors = require("cors");
 const morgan = require("morgan");
+const { restricted } = require("./Auth/auth-middleware");
 
 const userRouter = require("./Users/users-router");
 const authRouter = require("./Auth/auth-router");
@@ -20,7 +21,7 @@ server.use(express.json);   // build-in middleware
 server.get('/', (req, res) => {
     res.json({message: "Server up and running..."})
 })
-server.use('/api/users', userRouter);
+server.use('/api/users', restricted, userRouter);
 server.use('/api/auth', authRouter);
 
 // 4. error middlewares
